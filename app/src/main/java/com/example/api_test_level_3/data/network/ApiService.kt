@@ -1,12 +1,20 @@
 package com.example.api_test_level_3.data.network
 
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
+import com.example.api_test_level_3.data.models.CreateBookingRequest
+import com.example.api_test_level_3.data.models.CreateBookingResponse
+import retrofit2.http.POST
+import retrofit2.http.Body
+
 
 interface ApiService {
     @GET("prod/v1/cognito/get-user-bookings")
-    fun getUserBookings(): Call<ResponseBody>
+    fun getUserBookings(): Call<ApiResponse>
+
+    //Post que envia el request model y querecibe la respuesta en crudo
+    @POST("prod/v1/cognito/create-booking")
+    fun createBooking(
+        @Body bookingRequest: CreateBookingRequest
+    ): Call<CreateBookingRequest>
 }
