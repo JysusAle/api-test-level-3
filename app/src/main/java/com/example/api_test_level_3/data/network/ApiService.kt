@@ -16,5 +16,5 @@ interface ApiService {
     @POST("prod/v1/cognito/create-booking")
     fun createBooking(
         @Body bookingRequest: CreateBookingRequest
-    ): Call<CreateBookingRequest>
+    ): Call<CreateBookingResponse>
 }
