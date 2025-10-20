@@ -30,11 +30,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        // Target Java 21 (latest LTS). Use toVersion(21) for compatibility across Gradle versions.
+        sourceCompatibility = JavaVersion.toVersion(21)
+        targetCompatibility = JavaVersion.toVersion(21)
     }
     kotlinOptions {
-        jvmTarget = "11"
+        // Kotlin JVM target should match the Java toolchain used by Gradle/IDE.
+        jvmTarget = "21"
+    }
+    // Configure Kotlin Gradle plugin to use Java 21 toolchain where supported
+    // This helps Kotlin compile tasks target the correct JVM when toolchains are available.
+    kotlin {
+        jvmToolchain(21)
     }
     buildFeatures {
         compose = true
@@ -63,5 +70,7 @@ dependencies {
 // (Opcional) OkHttp logging si quieres ver requests/responses detallados
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 }
 
