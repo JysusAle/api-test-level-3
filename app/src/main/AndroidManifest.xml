@@ -12,24 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apitestlevel3">
         <activity
-            android:name=".MainActivity"
+            android:name=".APP"
             android:exported="true"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:theme="@style/Theme.Apitestlevel3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".BookingsActivity"
+            android:theme="@style/Theme.Apitestlevel3" />
+
+
+
+        <activity 
+            android:name=".CreateBookingActivity"
             android:exported="false" />
-
-        <activity android:name=".CreateBookingActivity" />
-
-
+            
+        <activity 
+            android:name=".MainMenuActivity"
+            android:exported="false" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

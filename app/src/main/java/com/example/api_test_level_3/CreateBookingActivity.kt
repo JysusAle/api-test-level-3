@@ -1,190 +1,98 @@
 package com.example.api_test_level_3
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
-import com.example.api_test_level_3.data.models.CreateBookingRequest
-import com.example.api_test_level_3.data.models.CreateBookingResponse
-import com.example.api_test_level_3.data.network.RetrofitClient
-import com.example.api_test_level_3.ui.theme.Apitestlevel3Theme
+import com.example.api_test_level_3.data.models.*
+import com.example.api_test_level_3.data.network.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CreateBookingActivity : ComponentActivity() {
+    private lateinit var inputBarbershop: EditText
+    private lateinit var inputBarberId: EditText
+    private lateinit var inputUserId: EditText
+    private lateinit var inputBookingDate: EditText
+    private lateinit var inputStartTime: EditText
+    private lateinit var inputEndTime: EditText
+    private lateinit var inputNotes: EditText
+    private lateinit var btnCreateBooking: Button
 
-    private val TAG = "CreateBooking"
-
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Apitestlevel3Theme {
-                Scaffold(
-                    topBar = {
-                        CenterAlignedTopAppBar(title = { Text("Create Booking") })
-                    }
-                ) { innerPadding ->
-                    CreateBookingScreen(modifier = Modifier.padding(innerPadding))
-                }
-            }
-        }
-    }
+        setContentView(R.layout.activity_create_booking)
 
-    @Composable
-    fun CreateBookingScreen(modifier: Modifier = Modifier) {
-        var barbershopId by remember { mutableStateOf("") }
-        var barberId by remember { mutableStateOf("") }
-        var serviceId by remember { mutableStateOf("") }
-        var userId by remember { mutableStateOf("") }
-        var date by remember { mutableStateOf("") }
-        var timeSlot by remember { mutableStateOf("") }
-        var notes by remember { mutableStateOf("") }
+        // Inicializar vistas usando findViewById
+        inputBarbershop = findViewById(R.id.inputBarbershop)
+        inputBarberId = findViewById(R.id.inputBarberId)
+        inputUserId = findViewById(R.id.inputUserId)
+        inputBookingDate = findViewById(R.id.inputBookingDate)
+        inputStartTime = findViewById(R.id.inputStartTime)
+        inputEndTime = findViewById(R.id.inputEndTime)
+        inputNotes = findViewById(R.id.inputNotes)
+        btnCreateBooking = findViewById(R.id.btnCreateBooking)
 
-        var loading by remember { mutableStateOf(false) }
-        var resultText by remember { mutableStateOf("") }
+        btnCreateBooking.setOnClickListener {
+            val barbershopId = inputBarbershop.text.toString().trim()
+            val barberId = inputBarberId.text.toString().trim()
+            val userId = inputUserId.text.toString().trim()
+            val bookingDate = inputBookingDate.text.toString().trim()
+            val startTime = inputStartTime.text.toString().trim()
+            val endTime = inputEndTime.text.toString().trim()
+            val notes = inputNotes.text.toString().trim()
 
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            OutlinedTextField(
-                value = barbershopId,
-                onValueChange = { barbershopId = it },
-                label = { Text("Barbershop ID") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            OutlinedTextField(
-                value = barberId,
-                onValueChange = { barberId = it },
-                label = { Text("Barber ID") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            OutlinedTextField(
-                value = serviceId,
-                onValueChange = { serviceId = it },
-                label = { Text("Service ID") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            OutlinedTextField(
-                value = userId,
-                onValueChange = { userId = it },
-                label = { Text("User ID") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            OutlinedTextField(
-                value = date,
-                onValueChange = { date = it },
-                label = { Text("Date (YYYY-MM-DD)") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            OutlinedTextField(
-                value = timeSlot,
-                onValueChange = { timeSlot = it },
-                label = { Text("Time Slot") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            OutlinedTextField(
-                value = notes,
-                onValueChange = { notes = it },
-                label = { Text("Notes") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Button(
-                onClick = {
-                    loading = true
-                    resultText = ""
-                    createBooking(
-                        barbershopId,
-                        barberId,
-                        serviceId,
-                        userId,
-                        date,
-                        timeSlot,
-                        notes
-                    ) { result ->
-                        resultText = result
-                        loading = false
-                    }
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(if (loading) "Creando..." else "CREATE BOOKING")
+            if (barbershopId.isEmpty() || userId.isEmpty() || bookingDate.isEmpty()) {
+                Toast.makeText(this, "Rellena los campos obligatorios", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Text(text = resultText)
+            // Crear y enviar la reserva
+            createBooking(
+                barbershopId = barbershopId,
+                barberId = barberId,
+                userId = userId,
+                bookingDate = bookingDate,
+                startTime = startTime,
+                endTime = endTime,
+                notes = notes.ifEmpty { null }
+            )
         }
     }
 
     private fun createBooking(
         barbershopId: String,
         barberId: String,
-        serviceId: String,
         userId: String,
-        date: String,
-        timeSlot: String,
-        notes: String?,
-        onResult: (String) -> Unit
+        bookingDate: String,
+        startTime: String,
+        endTime: String,
+        notes: String?
     ) {
-        val bookingRequest = CreateBookingRequest(
+        val request = CreateBookingRequest(
             barbershopId = barbershopId,
             barberId = barberId,
-            serviceId = serviceId,
+            serviceId = "", // Ajusta según necesites
             userId = userId,
-            date = date,
-            timeSlot = timeSlot,
+            date = bookingDate,
+            timeSlot = "$startTime - $endTime",
             notes = notes
         )
 
-        val call: Call<CreateBookingResponse> = RetrofitClient.apiService.createBooking(bookingRequest)
-        call.enqueue(object : Callback<CreateBookingResponse> {
-            override fun onResponse(
-                call: Call<CreateBookingResponse>,
-                response: Response<CreateBookingResponse>
-            ) {
-                if (response.isSuccessful && response.body() != null) {
-                    val body = response.body()!!
-                    val message = if (body.success) {
-                        "Reserva creada correctamente: ${body.data?.bookingId ?: "N/A"}"
-                    } else {
-                        "Error: ${body.message}"
-                    }
-                    onResult(message)
-                    Log.d(TAG, message)
+        RetrofitClient.apiService.createBooking(request).enqueue(object : Callback<CreateBookingResponse> {
+            override fun onResponse(call: Call<CreateBookingResponse>, response: Response<CreateBookingResponse>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@CreateBookingActivity, "Reserva creada con éxito", Toast.LENGTH_SHORT).show()
+                    finish()
                 } else {
-                    val error = "Error HTTP: ${response.code()}"
-                    onResult(error)
-                    Log.e(TAG, error)
+                    Toast.makeText(this@CreateBookingActivity, "Error al crear la reserva", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<CreateBookingResponse>, t: Throwable) {
-                val error = "Fallo en la petición: ${t.message}"
-                onResult(error)
-                Log.e(TAG, error, t)
+                Toast.makeText(this@CreateBookingActivity, "Error de red: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

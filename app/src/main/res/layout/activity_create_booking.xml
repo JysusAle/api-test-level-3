@@ -1,28 +1,76 @@
-<!-- res/layout/activity_create_booking.xml -->
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/inputName"
-        android:hint="Enter Name"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/inputDate"
-        android:hint="Enter Date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/inputBarbershop"
+            android:hint="Barbershop ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
 
-    <Button
-        android:id="@+id/btnCreate"
-        android:text="Create Booking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/inputBarberId"
+            android:hint="Barber ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="8dp"/>
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/inputUserId"
+            android:hint="User ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/inputBookingDate"
+            android:hint="Booking Date (YYYY-MM-DD)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/inputStartTime"
+            android:hint="Start Time (e.g., 09:00 AM)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/inputEndTime"
+            android:hint="End Time (e.g., 10:00 AM)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/inputNotes"
+            android:hint="Notes (opcional)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:inputType="textMultiLine"
+            android:minLines="2"/>
+
+        <Button
+            android:id="@+id/btnCreateBooking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Booking"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

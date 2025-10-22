@@ -10,7 +10,7 @@ data class CreateBookingRequest(
     val notes: String?
 )
 
-//Creacion del modelo para eñ response:
+//Creacion del modelo para el response:
 
 
 data class CreateBookingResponse(

@@ -13,7 +13,8 @@ object RetrofitClient {
 
     private const val BASE_URL = "https://wqidlsv4wk.execute-api.us-east-1.amazonaws.com/"
 
-    private const val TOKEN = "eyJraWQiOiIwQUdUZTlXemNtTUV1SXR2RXh5RjVSUWhTY0xZblJNTHFoN0w5R2Z3aGM0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2NDE4MDQ2OC0wMDQxLTcwZjMtMzgwMy01NmJkM2YxNTRhMDAiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfMVlqTnhOQUJRIiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjp0cnVlLCJjb2duaXRvOnVzZXJuYW1lIjoiNTAyYzEwOTQtODAyNS00YzNhLWI0YzktMzAyMzNlZTlmYjNhIiwib3JpZ2luX2p0aSI6ImFjNWY4ZmIzLTRjMzUtNDQ0MS1iMmY2LWE4Y2IyNGU5YTg4ZSIsImF1ZCI6IjUwc3U5NmJibWtyN280NDQ0M2xlZ2NqYWVtIiwiZXZlbnRfaWQiOiI1MTVmNTZmMC1hMWZjLTQ2MGItOWEzOS1mZjViN2I1MDQ2Y2IiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTc2MDk4ODQ1MiwibmFtZSI6Ik1hcmlvIE1vbGluYSIsInBob25lX251bWJlciI6Iis1MjU1MzIxMTYyNDgiLCJleHAiOjE3NjEwNzQ4NTIsImlhdCI6MTc2MDk4ODQ1MiwianRpIjoiNjgzMzNiMzUtN2FmZi00ZTM2LThhZjQtYTUwNzM1YmFkNzM1IiwiZW1haWwiOiJtYXJpby5tb2xpbmFAYXNpbW92Lm14In0.Ts7yrb6ixqTteUQB5M5XCkyhc_jrfJNgS2_wVSiS7g6iE19OBpij5mdwEFpyOX63pGXs168_WQdRCCOqHAuD2uWstTycucSmU5WNWKnCv0QMlkEdTR4MLonsXSagGiRshjo8h-KsWuYN15505aRt6EPS-pFsUAb4DnEbVEp_9z-2SUCwOXethZErQb97sEyXrqqhdfQZDscIce3jrMWbfr6IFrWAlN0YSWC4jnSeMLZWZ7M7tcFL74Lv55iDWPjDrhw-nUaPrDTLZDlinSSGtZj5qIdWFfoFVcu3UGTUrO0zLlAoI2vo3u7TsGrdS6Z1W8pS3vxvNb1X30t2F1PHXA"
+    private const val TOKEN = "eyJraWQiOiIwQUdUZTlXemNtTUV1SXR2RXh5RjVSUWhTY0xZblJNTHFoN0w5R2Z3aGM0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2NDE4MDQ2OC0wMDQxLTcwZjMtMzgwMy01NmJkM2YxNTRhMDAiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfMVlqTnhOQUJRIiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjp0cnVlLCJjb2duaXRvOnVzZXJuYW1lIjoiNTAyYzEwOTQtODAyNS00YzNhLWI0YzktMzAyMzNlZTlmYjNhIiwib3JpZ2luX2p0aSI6IjY2ZmM5MDlmLWZlM2EtNDk0OS1hZTFkLWFhOGVjYWJiNjkzZCIsImF1ZCI6IjUwc3U5NmJibWtyN280NDQ0M2xlZ2NqYWVtIiwiZXZlbnRfaWQiOiI2MDQxMTAxZC1kNTY1LTQ2YjctYjBmOS01ZmJmOTU4NjdhNDkiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTc2MTE2MDYxOSwibmFtZSI6Ik1hcmlvIE1vbGluYSIsInBob25lX251bWJlciI6Iis1MjU1MzIxMTYyNDgiLCJleHAiOjE3NjEyNDcwMTksImlhdCI6MTc2MTE2MDYxOSwianRpIjoiZGY1ODY2OTUtMmU5MC00MjlkLTk0MWEtODk5NjUwM2M2ZTliIiwiZW1haWwiOiJtYXJpby5tb2xpbmFAYXNpbW92Lm14In0.klWIGJQK1C_bibUdysVuFDzvjGv3RpTYa850DfNEyvjYztXTuDEh8yUIkBUIvUUI3Fs5427iA6bKsszlm-9J5cw88HMUpucHJhqQ-rbQGBP8afPIL4LsOAj_Yw56jJyezvTZEBi0sTK6oN0g0alh8wEtRHTi6oO2bkTN7x6DufnIz8wLqJ_9kiN9_QROXLH5Jh-lltKGGuJrArnjRBJesWd9BkSzlSxQYIwi92zQoQQKdMGkOezmBJa4fipN74p5e1k4Xlgi88htPlv7vLRq4Wo43xSWyO-w7ncsDq0jwzKS9lWwlQ6EenoA41E0mt5hubEiNlSLRuoR1-qPCDJHqg"
+
     private val headerInterceptor = Interceptor { chain ->
         val request = chain.request().newBuilder()
             .addHeader("Content-Type", "application/json")
@@ -38,16 +39,8 @@ object RetrofitClient {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
-
-            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
     }
-
-    private val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
-
-        .addConverterFactory(ScalarsConverterFactory.create()).build() }
-
-
-//Configuracion general para hacer las peticiones
+}
