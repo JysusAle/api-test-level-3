@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="space_xs">8dp</dimen>
+    <dimen name="space_s">16dp</dimen>
+    <dimen name="space_m">20dp</dimen>
+    <dimen name="space_l">24dp</dimen>
+
+    <dimen name="text_status">18sp</dimen>
+    <dimen name="text_button">16sp</dimen>
+
+    <dimen name="btn_min_height">56dp</dimen>
+</resources>

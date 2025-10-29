@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="@dimen/screen_padding">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,64 +13,72 @@
 
         <EditText
             android:id="@+id/inputBarbershop"
-            android:hint="Barbershop ID"
+            android:hint="@string/hint_barbershop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textSize="@dimen/text_input" />
 
         <EditText
             android:id="@+id/inputBarberId"
-            android:hint="Barber ID"
+            android:hint="@string/hint_barber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/space_s"
+            android:textSize="@dimen/text_input" />
 
         <EditText
             android:id="@+id/inputUserId"
-            android:hint="User ID"
+            android:hint="@string/hint_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/space_s"
+            android:textSize="@dimen/text_input" />
 
         <EditText
             android:id="@+id/inputBookingDate"
-            android:hint="Booking Date (YYYY-MM-DD)"
+            android:hint="@string/hint_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/space_s"
+            android:textSize="@dimen/text_input" />
 
         <EditText
             android:id="@+id/inputStartTime"
-            android:hint="Start Time (e.g., 09:00 AM)"
+            android:hint="@string/hint_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/space_s"
+            android:textSize="@dimen/text_input" />
 
         <EditText
             android:id="@+id/inputEndTime"
-            android:hint="End Time (e.g., 10:00 AM)"
+            android:hint="@string/hint_end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/space_s"
+            android:textSize="@dimen/text_input" />
 
         <EditText
             android:id="@+id/inputNotes"
-            android:hint="Notes (opcional)"
+            android:hint="@string/hint_notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/space_s"
             android:inputType="textMultiLine"
-            android:minLines="2"/>
+            android:minLines="2"
+            android:textSize="@dimen/text_input" />
 
         <Button
             android:id="@+id/btnCreateBooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Booking"
-            android:layout_marginTop="16dp"/>
+            android:text="@string/btn_create"
+            android:layout_marginTop="@dimen/space_l"
+            android:minHeight="@dimen/btn_min_height"
+            android:textSize="@dimen/text_button" />
 
     </LinearLayout>
 </ScrollView>

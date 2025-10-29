@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">api-test-level-3</string>
+    <string name="status_hint">Seleccione una opción</string>
+    <string name="btn_get">Hacer GET</string>
+    <string name="btn_post">Hacer POST</string>
+
+    <string name="hint_barbershop">Barbershop ID</string>
+    <string name="hint_barber">Barber ID</string>
+    <string name="hint_user">User ID</string>
+    <string name="hint_date">Booking Date (YYYY-MM-DD)</string>
+    <string name="hint_start">Start Time (e.g., 09:00 AM)</string>
+    <string name="hint_end">End Time (e.g., 10:00 AM)</string>
+    <string name="hint_notes">Notes (opcional)</string>
+    <string name="btn_create">Create Booking</string>
+
 </resources>

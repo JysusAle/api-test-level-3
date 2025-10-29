@@ -1,0 +1,34 @@
+<resources>
+    <!-- Separaciones generales -->
+    <dimen name="screen_padding">8dp</dimen>
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_s">8dp</dimen>
+    <dimen name="space_m">12dp</dimen>
+    <dimen name="space_l">16dp</dimen>
+
+    <!-- Tipografías -->
+    <dimen name="text_status">16sp</dimen>
+    <dimen name="text_button">14sp</dimen>
+
+    <!-- Controles -->
+    <dimen name="btn_min_height">48dp</dimen>
+
+    <!-- Entrada de texto -->
+
+    <dimen name="text_input">14sp</dimen>
+
+</resources>
+
+<!-- contenido del blog-->
+
+<!-- implentar grid o mallado -->
+
+<!-- implementar los skeletons, investigar dependencias si las hay -->
+
+    <!-- en una misma card mostrar varias columnas con una imagen -->
+
+    <!--investigar sistema de mall juntando los dos conceptos -->
+
+<!-- investiga como hacer un skeleton -->
+
+<!-- Hacer un get en automatico, entrando en una vista  -->

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_padding">24dp</dimen>
+    <dimen name="space_xs">10dp</dimen>
+    <dimen name="space_s">18dp</dimen>
+    <dimen name="space_m">24dp</dimen>
+    <dimen name="space_l">28dp</dimen>
+
+    <dimen name="text_status">20sp</dimen>
+    <dimen name="text_button">18sp</dimen>
+
+    <dimen name="btn_min_height">64dp</dimen>
+</resources>

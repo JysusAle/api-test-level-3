@@ -74,5 +74,6 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 }
 
