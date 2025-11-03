@@ -15,6 +15,8 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
+import kotlin.concurrent.timer
 
 class BookingsActivity : AppCompatActivity() {
 
@@ -49,12 +51,14 @@ class BookingsActivity : AppCompatActivity() {
     }
 
     private fun fetchBookings() {
+
         val call: Call<ApiResponse> = RetrofitClient.apiService.getUserBookings()
         call.enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 shimmerContainer.stopShimmer()
                 shimmerContainer.visibility = View.GONE
                 recyclerBookings.visibility = View.VISIBLE
+                Thread.sleep(2500)
 
                 if (response.isSuccessful && response.body() != null) {
                     val bookings = response.body()!!.data.bookings
@@ -62,6 +66,7 @@ class BookingsActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this@BookingsActivity,
+                        //esperar tiempo (timer)
                         "Error HTTP: ${response.code()}",
                         Toast.LENGTH_SHORT
                     ).show()
