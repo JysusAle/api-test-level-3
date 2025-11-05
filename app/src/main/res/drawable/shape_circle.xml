@@ -5,8 +5,4 @@
     <!-- Color de fondo -->
     <solid android:color="#E0E0E0" />
 
-    <!-- Opcional: borde -->
-    <stroke
-        android:width="2dp"
-        android:color="#BDBDBD" />
 </shape>
